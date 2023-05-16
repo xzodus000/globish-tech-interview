@@ -10,6 +10,12 @@ Develop the website based on the design linked below
 
 ##### *Fork this repository, customize the code to fit your style, and submit your repository to us.*
 
+###### Spec
+ 
+1. Use Vite Vue3 framework
+2. Write with TypeScript
+3. Responsive with max width 720px
+
 ###### There are three types of personality, and the scoring criteria are as follows:
 
 1. The Gradual Learner: 131 - 180
