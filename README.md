@@ -6,7 +6,7 @@
 ## Instruction
 Develop the website based on the design linked below
 
-[Design](https://www.figma.com/file/sqJhuPKdNlffwHo5bvswvI/Tech-Interview%2C-Personality-Test?type=design&node-id=0-1)
+[Design](https://www.figma.com/file/sqJhuPKdNlffwHo5bvswvI/Tech-Interview%2C-Personality-Test?type=design&node-id=0-1) (Please Login)
 
 ##### *Fork this repository, customize the code to fit your style, and submit your repository to us.*
 
