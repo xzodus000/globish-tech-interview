@@ -1,5 +1,6 @@
 # Personality Test Project
 
+
 > Personality Test is a questionnaire designed to determine which type of personality you have, based on the answers you provide. (The calculation is based on assumptions only.)
 
 ## Instruction
@@ -13,7 +14,7 @@ Develop the website based on the design linked below
 
 1. The Gradual Learner: 131 - 180
 2. The Enthusiastic: 91 - 130
-3. The Hobbyist: 60 - 91
+3. The Hobbyist: 60 - 90
 
 
 
