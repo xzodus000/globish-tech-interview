@@ -1,5 +1,4 @@
 <template>
-  <img alt="globish-logo" src="./assets/globish-logo-temp.png" />
   <WelcomeBox msg="Welcome to Globish" />
 </template>
 
