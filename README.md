@@ -7,7 +7,7 @@ Develop the website based on the design linked below
 
 [Design](https://www.figma.com/file/sqJhuPKdNlffwHo5bvswvI/Tech-Interview%2C-Personality-Test?type=design&node-id=0-1)
 
-#####*Fork this repository, customize the code to fit your style, and submit your repository to us.*
+##### *Fork this repository, customize the code to fit your style, and submit your repository to us.*
 
 ###### There are three types of personality, and the scoring criteria are as follows:
 
