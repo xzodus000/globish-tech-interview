@@ -29,6 +29,8 @@ Develop the website based on the design linked below
 | Q5            | 20  | 10  |30  |
 | Q6            | 20  | 10  | 30  |
 
+NOTE: The last question will not be included in the calculation.
+
 ---
 
 
