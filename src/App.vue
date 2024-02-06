@@ -6,9 +6,14 @@
     <div v-if="!showResult && beginQuest" class="test-container">
       <PersonalityTest
         :question="questions[currentQuestionIndex]"
+        :myAnswer="myAnswer"
         @answer-selected="handleAnswerSelected"
         @answer-where="handleWhere"
         @another-where="handleAnotherWhere"
+        @my-answer-change="handleMyAnswerChange"
+        @next-quest="nextQuestion"
+        @active-next="activeNextBTN"
+        @deactive-next="deactiveNextBTN"
       />
       <div class="button-container">
         <button
@@ -18,7 +23,13 @@
         >
           Previous
         </button>
-        <button @click="nextQuestion" class="nav-button next">Next</button>
+        <button
+          @click="nextQuestion"
+          class="nav-button next"
+          :disabled="nextBTN"
+        >
+          Next
+        </button>
       </div>
     </div>
     <div class="test-container">
@@ -27,6 +38,7 @@
         :score="score"
         :where="where"
         :another="anotherWhere"
+        :myAnswer="myAnswer"
       />
     </div>
   </div>
@@ -49,19 +61,49 @@ export default defineComponent({
     const beginQuest = ref(false);
     const currentQuestionIndex = ref(0);
     const score = ref(0);
+    const nextBTN = ref(true);
     const showResult = ref(false);
     const anotherWhere = ref("");
     const where = ref([false, false, false]);
+    const myAnswer = ref([0, 0, 0, 0, 0, 0]);
     const handleAnswerSelected = (selectedScore: number) => {
       score.value += selectedScore;
-      nextQuestion(); // Automatically move to the next question after selecting an answer
+      // nextQuestion();
     };
     const handleAnotherWhere = (data: string) => {
+      if (data) {
+        nextBTN.value = false;
+      }
       anotherWhere.value = data;
     };
 
+    const activeNextBTN = () => {
+      nextBTN.value = false;
+    };
+    const deactiveNextBTN = () => {
+      nextBTN.value = true;
+    };
+
+    const handleMyAnswerChange = (posistion: number, score: number) => {
+      console.log("🚀 ~ handleMyAnswerChange ~ posistion:", posistion);
+      console.log("🚀 ~ handleMyAnswerChange ~ score:", score);
+      myAnswer.value[posistion] = score;
+      console.log("🚀 ~ handleMyAnswerChange ~ myAnswer.valu:", myAnswer.value);
+      // nextBTN.value = false;
+    };
+
+    const resetMyAnswer = () => {
+      for (let index = 0; index < myAnswer.value.length; index++) {
+        myAnswer.value[index] = 0;
+      }
+    };
+
     const handleWhere = (posistion: number) => {
+      nextBTN.value = false;
       where.value[posistion] = !where.value[posistion];
+      if (where.value[2] && anotherWhere.value === "") {
+        nextBTN.value = true;
+      }
       console.log("🚀 ~ handleWhere ~ where:", where.value);
     };
 
@@ -70,6 +112,7 @@ export default defineComponent({
     };
 
     const nextQuestion = () => {
+      nextBTN.value = true;
       if (currentQuestionIndex.value < questions.length - 1) {
         currentQuestionIndex.value++;
       } else {
@@ -98,6 +141,12 @@ export default defineComponent({
       where,
       handleAnotherWhere,
       anotherWhere,
+      myAnswer,
+      handleMyAnswerChange,
+      resetMyAnswer,
+      nextBTN,
+      activeNextBTN,
+      deactiveNextBTN,
     };
   },
 });
@@ -164,5 +213,8 @@ button {
   height: 40px;
   background-color: #fffaf5;
   color: #000000;
+}
+.disable {
+  background-color: #808080 !important;
 }
 </style>

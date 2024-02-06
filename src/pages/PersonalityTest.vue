@@ -10,6 +10,9 @@
             :key="index"
             @click="selectAnswer(choice.score, question.id, choice.text)"
             class="answer"
+            :class="
+              selectedChoice(question.id - 1, choice.score) ? 'active' : ''
+            "
           >
             {{ choice.text }}
           </li>
@@ -75,8 +78,19 @@ export default defineComponent({
       type: Object as PropType<Question>,
       required: true,
     },
+    myAnswer: {
+      type: Array,
+      required: true,
+    },
   },
-  emits: ["answer-selected", "answer-where", "another-where"],
+  emits: [
+    "answer-selected",
+    "answer-where",
+    "another-where",
+    "my-answer-change",
+    "next-quest",
+    "active-next",
+  ],
   methods: {
     selectAnswer(score: number, id: number, choice: string) {
       if (id === 7) {
@@ -95,7 +109,9 @@ export default defineComponent({
         this.toggleClassName();
         this.$emit("answer-where", position);
       } else {
+        this.$emit("active-next");
         this.$emit("answer-selected", score);
+        this.$emit("my-answer-change", id - 1, score);
       }
     },
     toggleClassName() {
@@ -106,6 +122,17 @@ export default defineComponent({
     updateTextInput(event: any) {
       this.textInput = event.target.value;
       this.$emit("another-where", event.target.value);
+    },
+    nextQuest() {
+      this.$emit("next-quest");
+    },
+    selectedChoice(questID: number, score: number) {
+      if (this.myAnswer[questID] === score) {
+        this.$emit("active-next");
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 });

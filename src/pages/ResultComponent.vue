@@ -50,12 +50,21 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    myAnswer: {
+      type: Array,
+      required: true,
+    },
   },
   setup(props) {
     const result = computed(() => {
-      if (props.score >= 131) {
+      const sum = props.myAnswer.reduce(
+        (accumulator: number, currentValue: any) => accumulator + currentValue,
+        0
+      );
+      console.log("🚀 ~ result ~ sum:", sum);
+      if (sum >= 131) {
         return "The Gradual Learner";
-      } else if (props.score >= 91) {
+      } else if (sum >= 91) {
         return "The Enthusiastic";
       } else {
         return "The Hobbyist";
